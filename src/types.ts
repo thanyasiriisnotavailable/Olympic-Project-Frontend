@@ -1,38 +1,23 @@
 export interface Country {
-  id: number
+  order: number
+  id: string
   name: string
   gold: number
   silver: number
   bronze: number
   flag: string
-  details: CountryDetails
-  sports: Sport[]
-  comments: Comment[] // List of comments
-}
-
-// details about a country
-export interface CountryDetails {
   capital: string
   language: string
-  region: string
-  continent: string
+  sports: Sport[]
 }
 
 export interface Sport {
   sport: string
-  medals: Medal
+  medals: Medals
 }
 
-// the type of medal and the count of medals won in that sport
-export interface Medal {
+export interface Medals {
   gold: number
   silver: number
   bronze: number
-}
-
-// a comment made by a user
-export interface Comment {
-  user: string
-  text: string
-  timestamp: Date
 }
