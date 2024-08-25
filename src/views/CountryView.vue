@@ -16,14 +16,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="wallpaper">
-    <h1>Olympic Medal Table</h1>
+  <div class="bg-034078 text-white py-15 px-5 w-full text-center mb-7 shadow-md h-[12rem] flex items-center justify-center">
+    <h1 class="text-5xl font-bold m-0">Olympic Medal Table</h1>
   </div>
-  <div class="table" style="box-sizing: border-box;">
-    <div class="table-header">
-      <div class="noc"> 
-        <span style="margin-right: 1rem;" >Order</span>
-        <span>NOCs</span>
+  <div class="box-border mb-11">
+    <div class="grid items-center justify-items-center gap-x-2.5 h-14 text-xl px-4 grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)] mx-16">
+      <div class="flex items-center justify-self-start">
+        <span class="mr-10 font-medium">Order</span>
+        <span class="font-medium">NOCs</span>
       </div>
       <div>
         <img src="../assets/gold-medal.svg" alt="gold medal" width="40" />
@@ -34,30 +34,17 @@ onMounted(() => {
       <div>
         <img src="../assets/bronze-medal.svg" alt="bronze medal" width="40" />
       </div>
-      <span>Totals</span>
+      <span class="font-medium">Total</span>
     </div>
-    <div class="countries" style="box-sizing: border-box;">
+    <div class="box-border">
       <CountryRow v-for="country in countries" :key="country.id" :country="country" />
     </div>
   </div>
 </template>
 
 <style scoped>
-.table-header {
-  height: 3.5rem;
-  font-size: 1.5rem;
-  position: relative;
-  column-gap: 0.625rem;
-  padding: 0 1rem;
-  grid-template-columns: minmax(0, 5.5fr) repeat(4, 1.5fr);
-  align-items: center;
-  display: grid;
-  justify-items: center;
-}
-
-.noc {
-  display: flex;
-  align-items: center;
-  justify-self: left;
+/* Custom colors */
+.bg-034078 {
+  background-color: #034078;
 }
 </style>
