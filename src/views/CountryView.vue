@@ -2,18 +2,28 @@
 import CountryRow from '@/components/CountryRow.vue'
 import type { Country } from '@/types'
 import { ref, onMounted, computed, watchEffect } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 import CountryService from '@/services/CountryService'
 const route = useRoute()
+const router = useRouter()
+
 const countries = ref<Country[] | null>(null)
 const totalCountry = ref(0)
-const perPage = computed(() => parseInt(route.query.perPage as string) || 5)
+
+const perPageInput = ref(parseInt(route.query.perPage as string) || 5)
+const perPage = computed(() => parseInt(route.query.perPage as string) || 5 || perPageInput.value)
 const page = computed(() => parseInt(route.query.page as string) || 1)
+
 const hasNextPage = computed(() => {
-  const totalPages = Math.ceil(totalCountry.value / perPage.value)
-  return page.value < totalPages
+const totalPages = Math.ceil(totalCountry.value / perPage.value)
+return page.value < totalPages
 })
+const updatePerPage = () => {
+  router.push({ name: 'country', query: { page: 1, perPage: perPageInput.value } })
+}
+
+
 onMounted(() => {
 watchEffect(() => {
   CountryService.getCountries(perPage.value, page.value)
@@ -30,8 +40,26 @@ watchEffect(() => {
 
 <template>
   <div class="wallpaper">
+    
     <h1>Olympic Medal Table</h1>
+    <div class="table">
+
+      <div class="perpage-box">
+    <label for="perPage">Countries per Page: </label>
+
+    <select  id="perPage"
+      type="number"
+      list="number-options"
+      v-model="perPageInput">
+      <option v-for="n in 20" :key="n" :value="n">{{ n }}</option>
+      
+    </select>
+    <button @click="updatePerPage">Apply</button>
   </div>
+  </div>
+  </div>
+
+
   <div class="table" style="box-sizing: border-box;">
     <div class="table-header">
       <div class="noc"> 
@@ -90,4 +118,5 @@ watchEffect(() => {
   align-items: center;
   justify-self: left;
 }
+
 </style>
