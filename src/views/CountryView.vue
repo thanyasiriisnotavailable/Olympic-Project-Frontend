@@ -1,17 +1,30 @@
 <script setup lang="ts">
 import CountryRow from '@/components/CountryRow.vue'
 import type { Country } from '@/types'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
+
 import CountryService from '@/services/CountryService'
-
+const route = useRoute()
 const countries = ref<Country[] | null>(null)
-
+const totalCountry = ref(0)
+const perPage = computed(() => parseInt(route.query.perPage as string) || 5)
+const page = computed(() => parseInt(route.query.page as string) || 1)
+const hasNextPage = computed(() => {
+  const totalPages = Math.ceil(totalCountry.value / perPage.value)
+  return page.value < totalPages
+})
 onMounted(() => {
-  CountryService.getCountries()
-    .then((response) => ((countries.value = response.data), console.log(countries.value)))
+watchEffect(() => {
+  CountryService.getCountries(perPage.value, page.value)
+    .then((response) => {
+      countries.value = response.data
+      totalCountry.value = parseInt(response.headers['x-total-count'])
+    })
     .catch((error) => {
       console.error('There was an error!', error)
     })
+})
 })
 </script>
 
@@ -38,6 +51,23 @@ onMounted(() => {
     </div>
     <div class="countries" style="box-sizing: border-box;">
       <CountryRow v-for="country in countries" :key="country.id" :country="country" />
+      <div class="flex w-[290px] mt-4">
+      <RouterLink
+        class="flex-1 text-blue-700 hover:underline text-left"
+        :to="{ name: 'country', query: { page: page - 1, perPage: perPage } }"
+        rel="prev"
+        v-if="page != 1"
+        >&#60; Prev Page</RouterLink
+      >
+
+      <RouterLink
+        class="flex-1 text-blue-700 hover:underline text-right"
+        :to="{ name: 'country', query: { page: page + 1, perPage: perPage } }"
+        rel="next"
+        v-if="hasNextPage"
+        >Next Page &#62;</RouterLink
+      >
+    </div>
     </div>
   </div>
 </template>
