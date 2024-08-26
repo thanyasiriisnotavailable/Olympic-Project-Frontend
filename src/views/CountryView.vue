@@ -123,7 +123,7 @@ const toggleDropdown = () => {
       class="grid items-center justify-items-center gap-x-2.5 h-14 text-xl px-4 grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)] mx-16"
     >
       <div class="flex items-center justify-self-start">
-        <span class="mr-10 font-medium">Order</span>
+        <span class="mr-4 sm:mr-10 font-medium">Order</span>
         <span class="font-medium">NOCs</span>
       </div>
       <div>

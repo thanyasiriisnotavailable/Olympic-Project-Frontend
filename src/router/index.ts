@@ -24,7 +24,7 @@ const router = createRouter({
           props: true
         },
         {
-          path: '',
+          path: 'sports',
           name: 'sport-list-view',
           component: SportListView,
           props: true
