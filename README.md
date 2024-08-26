@@ -9,6 +9,8 @@ This project uses the following color palette:
 - **#034078**: Medium blue ![#034078](https://via.placeholder.com/15/034078/000000?text=+)
 - **#1282A2**: Light blue ![#1282A2](https://via.placeholder.com/15/1282A2/000000?text=+)
 - **#FEFCFB**: Off-white ![#FEFCFB](https://via.placeholder.com/15/FEFCFB/000000?text=+)
+- **#4274a3**
+- **#edf0f3**
 
 You can view and explore this palette [here](https://coolors.co/palette/0a1128-001f54-034078-1282a2-fefcfb).
 

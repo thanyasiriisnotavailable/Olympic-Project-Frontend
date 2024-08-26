@@ -17,7 +17,7 @@ const totalMedals = computed(() => {
     :to="{ name: 'detail-view', params: { id: country.id } }"
   >
     <div class="py-2">
-      <div class="grid grid-cols-[minmax(0,5.5fr)_repeat(4,1.5fr)] gap-2 items-center text-center px-4 h-16 border border-gray-300 rounded-md mx-16 bg-[#fbfbfd]">
+      <div class="grid grid-cols-[minmax(0,5.5fr)_repeat(4,1.5fr)] gap-2 items-center text-center px-4 h-16 border border-gray-300 rounded-md mx-16 my-0.5 bg-[#fbfbfd]">
         <div class="flex items-center space-x-4">
           <span class="text-xl font-bold text-blue-900 mr-12 ml-4 flex justify-center">{{ country.order }}</span>
           <img
