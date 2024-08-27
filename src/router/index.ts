@@ -3,6 +3,7 @@ import CountryView from '../views/CountryView.vue'
 import LayoutView from '@/views/country/LayoutView.vue'
 import DetailView from '@/views/country/DetailView.vue'
 import SportListView from '@/views/country/SportListView.vue'
+import nProgress from 'nprogress'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -40,4 +41,11 @@ const router = createRouter({
     }
   }
 })
+router.beforeEach(() => {
+  nProgress.start()
+})
+router.afterEach(() => {
+  nProgress.done()
+})
+
 export default router
