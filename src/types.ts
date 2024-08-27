@@ -21,3 +21,7 @@ export interface Medals {
   silver: number
   bronze: number
 }
+
+export interface CommentState {
+  comment: string
+}
