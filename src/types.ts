@@ -9,6 +9,7 @@ export interface Country {
   capital: string
   language: string
   sports: Sport[]
+  comment: CommentState
 }
 
 export interface Sport {
@@ -23,5 +24,6 @@ export interface Medals {
 }
 
 export interface CommentState {
-  comment: string
+  comments: string[];
+  comment: string;
 }

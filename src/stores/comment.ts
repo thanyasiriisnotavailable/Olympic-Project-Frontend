@@ -1,15 +1,17 @@
-import type { CommentState } from '@/types'
 import { defineStore } from 'pinia'
+
 export const useCommentStore = defineStore('comment', {
-  state: (): CommentState => ({
-    comment: ''
+  state: () => ({
+    comments: {} as Record<string, string[]> // Object to hold comments for each country
   }),
   actions: {
-    updateComment(comment: string): void {
-      this.comment = comment
-    },
-    resetComment(): void {
-      this.comment = ''
+    addComment(countryId: string, comment: string): void {
+      if (comment.trim()) {
+        if (!this.comments[countryId]) {
+          this.comments[countryId] = []
+        }
+        this.comments[countryId].push(comment)
+      }
     }
   }
 })
