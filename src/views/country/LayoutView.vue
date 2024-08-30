@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, defineProps } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
+
 import type { Country } from '@/types'
 import CountryService from '@/services/CountryService'
 
@@ -12,9 +13,8 @@ const props = defineProps({
     required: true
   }
 })
-
 const route = useRoute()
-
+const router = useRouter()
 onMounted(() => {
   console.log('Mounted with props:', props)
   CountryService.getCountry(props.id)
@@ -22,10 +22,18 @@ onMounted(() => {
       country.value = response.data
     })
     .catch((error) => {
-      console.error('There was an error fetching the country data!', error)
+      if (error.response && error.response.status === 404) {
+        router.push({
+          name: '404-resource-view',
+          params: { resource: 'country' }
+        })
+      } else {
+        router.push({ name: 'network-error-view' })
+      }
     })
 })
 </script>
+
 
 <template>
   <div v-if="country" class="bg-gray-100 min-h-screen">
