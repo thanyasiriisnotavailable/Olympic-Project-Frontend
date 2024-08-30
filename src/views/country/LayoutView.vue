@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, defineProps } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import type { Country } from '@/types'
 import CountryService from '@/services/CountryService'
@@ -48,7 +49,6 @@ onMounted(() => {
     })
 })
 </script>
-
 
 <template>
   <div v-if="country" class="bg-gray-100 min-h-screen">
