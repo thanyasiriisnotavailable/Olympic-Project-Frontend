@@ -52,7 +52,7 @@ const toggleDropdown = () => {
 
 <template>
   <div
-  class="bg-034078 text-white py-15 px-5 w-full text-center mb-7 shadow-md h-auto flex flex-col items-center justify-center"
+  class="bg-[#034078] text-white py-15 px-5 w-full text-center mb-7 shadow-md h-auto flex flex-col items-center justify-center"
 >
   <h1 class="text-5xl font-bold m-0 pt-5">Olympic Medal Table</h1>
   <div class="perpage-box mt-4 mx-5 w-full md:w-1/2 justify-items-center   ">
@@ -119,23 +119,21 @@ const toggleDropdown = () => {
 
 
   <div class="box-border mb-11">
-    <div
-      class="grid items-center justify-items-center gap-x-2.5 h-14 text-xl px-4 grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)] mx-16"
-    >
+    <div class="grid items-center justify-items-center gap-x-2.5 h-14 text-lg md:text-xl px-6 md:px-4 md:mx-16 grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)] font-medium">
       <div class="flex items-center justify-self-start">
-        <span class="mr-4 sm:mr-10 font-medium">Order</span>
-        <span class="font-medium">NOCs</span>
+        <span class="mr-4 sm:mr-10 ">Order</span>
+        <span>NOCs</span>
       </div>
       <div>
-        <img src="../assets/gold-medal.svg" alt="gold medal" width="40" />
+        <img src="../assets/gold-medal.svg" alt="gold medal" class="w-8 md:w-8 lg:w-10" />
       </div>
       <div>
-        <img src="../assets/silver-medal.svg" alt="silver medal" width="40" />
+        <img src="../assets/silver-medal.svg" alt="silver medal" class="w-8 md:w-8 lg:w-10" />
       </div>
       <div>
-        <img src="../assets/bronze-medal.svg" alt="bronze medal" width="40" />
+        <img src="../assets/bronze-medal.svg" alt="bronze medal" class="w-8 md:w-8 lg:w-10" />
       </div>
-      <span class="font-medium">Total</span>
+      <span>Total</span>
     </div>
     <div class="box-border">
       <CountryRow v-for="country in countries" :key="country.id" :country="country" />
@@ -214,11 +212,6 @@ const toggleDropdown = () => {
 
 
 <style scoped>
-/* Custom colors */
-.bg-034078 {
-  background-color: #141d64;
-}
-
 .rotate-180 {
   transform: rotate(180deg);
   transition: transform 0.3s ease;
