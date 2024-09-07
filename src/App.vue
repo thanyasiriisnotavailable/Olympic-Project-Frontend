@@ -1,7 +1,34 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router';
+import LoadingSpinner from '@/components/Loading.vue';
+import { ref, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+
+const isLoading = ref(false);
+
+const router = useRouter();
+
+onMounted(() => {
+ 
+  router.beforeEach((to, from, next) => {
+    isLoading.value = true;
+    next();
+  });
+
+
+  router.afterEach(() => {
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 500); 
+  });
+});
 </script>
 
 <template>
-  <RouterView />
+  <div>
+    <div v-if="isLoading" class="">
+      <LoadingSpinner />
+    </div>
+    <RouterView />
+  </div>
 </template>
