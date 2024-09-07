@@ -34,7 +34,7 @@ const total = computed(() => {
   >
     <div class="py-1 md:py-2 mx-1 md:mx-0">
       <div
-        class="grid grid-cols-[minmax(0,_2fr)_repeat(4,_1fr)] gap-2 items-center text-center px-4 md:px-4 mx-0 md:mx-16 h-16 border border-gray-300 rounded-md my-0.5 bg-[#fbfbfd]"
+        class="grid grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)] gap-2 items-center text-center px-4 md:px-4 mx-0 md:mx-16 h-16 border border-gray-300 rounded-md my-0.5 bg-[#fbfbfd]"
       >
         <div class="flex items-center space-x-4">
           <span
