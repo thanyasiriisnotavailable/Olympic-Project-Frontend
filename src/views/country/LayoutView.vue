@@ -10,7 +10,6 @@ import { storeToRefs } from 'pinia'
 
 const store = useCommentStore()
 const { comments } = storeToRefs(store)
-
 const country = ref<Country | null>(null)
 
 const props = defineProps({
@@ -27,7 +26,7 @@ const submitComment = (e: Event) => {
   const newComment = commentInput.value.trim()
 
   if (newComment && country.value) {
-    store.addComment(country.value.id, newComment) // Pass country ID when adding a comment
+    store.addComment(country.value.id, newComment)
     commentInput.value = ''
   }
 }
@@ -95,10 +94,15 @@ onMounted(() => {
     </div>
 
     <!-- Comment cheer -->
-    <div class="comment px-6 py-5 max-w-screen-lg mx-auto bg-[#95bbde] rounded-lg shadow-lg">
-      <div class="comment-section flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
+    <div class="comment flex justify-center items-center mx-auto my-10 max-w-screen-lg">
+      <div
+        class="comment-section px-6 mb-6 flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6 lg:w-full"
+      >
         <!-- Comment Form -->
-        <form class="comment-form w-full md:w-1/2 space-y-4" @submit="submitComment">
+        <form
+          class="comment-form w-full space-y-4 px-6 py-5 bg-[#95bbde] rounded-lg shadow-lg"
+          @submit="submitComment"
+        >
           <h4 class="text-2xl font-bold mb-2 text-gray-800">Cheer on your favorite athlete!</h4>
           <textarea
             name="comment"
@@ -115,36 +119,42 @@ onMounted(() => {
         </form>
 
         <!-- Displaying Comments for the Current Country -->
-        <div class="comment-list w-full md:w-1/2 bg-white p-4 rounded-lg shadow-md">
-          <h4 class="text-xl font-semibold text-gray-700">Messages of Support:</h4>
+        <div class="comment-list w-full space-y-4 px-6 py-6 bg-[#95bbde] rounded-lg shadow-lg">
+          <div class="w-full h-full bg-white p-4 rounded-lg shadow-md">
+            <h4 class="text-xl font-semibold text-gray-700">Messages of Support:</h4>
 
-          <!-- Scrollable comment items -->
-          <div
-            v-if="comments[country.id]?.length > 0"
-            class="comment-items overflow-y-auto max-h-48 mt-4"
-          >
-            <ul class="space-y-3">
-              <!-- Display all comments, but limit the visible height -->
-              <li
-                v-for="(comment, index) in comments[country.id]?.slice().reverse()"
-                :key="index"
-                class="comment-item bg-gray-100 p-3 rounded shadow-sm border-l-4 border-[#404449] pl-3"
-              >
-                {{ comment }}
-              </li>
-            </ul>
-          </div>
-          <!-- Message when no comments are available -->
-          <div v-else class="text-gray-400 text-sm mt-4">
-            <p class="text-base">Be the first to leave a comment!</p>
-          </div>
+            <!-- Scrollable comment items -->
+            <div
+              v-if="comments[country.id]?.length > 0"
+              :class="[
+                'comment-items mt-4',
+                comments[country.id].length > 2 ? 'overflow-y-auto max-h-48' : ''
+              ]"
+            >
+              <ul class="space-y-3">
+                <!-- Display all comments, but limit the visible height -->
+                <li
+                  v-for="(comment, index) in comments[country.id]?.slice().reverse()"
+                  :key="index"
+                  class="comment-item bg-gray-100 p-3 rounded shadow-sm border-l-4 border-[#404449] pl-3"
+                >
+                  {{ comment }}
+                </li>
+              </ul>
+            </div>
 
-          <!-- Scroll indicator for more comments -->
-          <div
-            v-if="comments[country.id]?.length > 3"
-            class="text-right text-gray-400 text-sm mt-2"
-          >
-            <p class="text-base font-medium">Scroll for more...</p>
+            <!-- Message when no comments are available -->
+            <div v-else class="text-gray-400 text-sm mt-4">
+              <p class="text-base">Be the first to leave a comment!</p>
+            </div>
+
+            <!-- Scroll indicator for more comments -->
+            <div
+              v-if="comments[country.id]?.length > 2"
+              class="text-right text-gray-400 text-sm mt-2"
+            >
+              <p class="text-base font-medium">Scroll for more...</p>
+            </div>
           </div>
         </div>
       </div>
