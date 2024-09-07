@@ -185,9 +185,7 @@ const toggleDropdown = () => {
         </RouterLink>
       </div>
     </div>
-    
   </div>
-  
 </template>
 
 <style>
