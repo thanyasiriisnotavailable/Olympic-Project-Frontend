@@ -216,7 +216,7 @@ const toggleDropdown = () => {
 <style scoped>
 /* Custom colors */
 .bg-034078 {
-  background-color: #034078;
+  background-color: #141d64;
 }
 
 .rotate-180 {

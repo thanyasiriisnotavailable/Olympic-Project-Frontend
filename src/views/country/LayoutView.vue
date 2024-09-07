@@ -50,21 +50,24 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="country" class="bg-gray-100 min-h-screen">
+  <div v-if="country" class="bg-[#f2efef] min-h-screen ">
     <div>
-      <nav class="flex items-center justify-between relative bg-[#034078] shadow-md py-4">
+      <nav class="flex items-center justify-between relative  bg-[#141d64] shadow-md p-5 pb-1 md:p-10 ">
         <!-- Left Section: Button -->
         <div>
           <router-link
             :to="{ name: 'country' }"
-            class="text-[#41bde0] text-2xl px-12 rounded font-black tracking-wider transition duration-150 ease-in-out hover:text-[#41bde0d6]"
+            class="text-[#dbc26c] text-4xl px-4 sm:px-12 rounded font-black tracking-wider transition duration-150 ease-in-out hover:text-[#41bde0d6] flex items-center"
           >
-            Olympic Medal Table
+            <!-- Olympic icon for mobile view -->
+            <img src="/olympic-icon.png" alt="Olympic Icon" class="w-24 h-auto block sm:hidden" />
+            <!-- Olympic Medal Table text for desktop view -->
+            <span class="hidden sm:block">Olympic Medal Table</span>
           </router-link>
         </div>
 
         <!-- Right Section: Links (aligned to the right) -->
-        <div class="ml-auto flex space-x-6">
+        <div class=" flex space-x-4 ">
           <router-link
             :to="{ name: 'detail-view', params: { id: props.id } }"
             :class="[
@@ -72,18 +75,18 @@ onMounted(() => {
               route.name === 'detail-view' ? 'text-[#afb7c2]' : 'text-[#FEFCFB]'
             ]"
           >
-            Country Details
+            Details
           </router-link>
           <!-- Divider -->
           <div class="h-8 border-l-2 border-gray-400"></div>
           <router-link
             :to="{ name: 'sport-list-view', params: { id: props.id } }"
             :class="[
-              'pr-12 text-xl font-semibold transition duration-150 ease-in-out focus:outline-none hover:text-[#afb7c2]',
+              'text-xl font-semibold transition duration-150 ease-in-out focus:outline-none hover:text-[#afb7c2]',
               route.name === 'sport-list-view' ? 'text-[#afb7c2]' : 'text-[#FEFCFB]'
             ]"
           >
-            Sports Table
+            Table
           </router-link>
         </div>
       </nav>
