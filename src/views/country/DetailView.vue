@@ -25,7 +25,7 @@ const { country } = toRefs(props)
           <p class="text-lg sm:text-xl text-gray-800">
             <b>ISO code:</b> <span class="font-semibold">{{ country.id }}</span>
           </p>
-          <p> {{ country.name }} is located in the continent of {{ country.continent }}, with its capital city being {{ country.capital }}, and the official language is {{ country.language }}.</p>
+          <p class="mt-1 text-lg"> {{ country.name }} is located in the continent of {{ country.continent }}, with its capital city being {{ country.capital }}, and the official language is {{ country.language }}.</p>
         </div>
       </div>
     </div>

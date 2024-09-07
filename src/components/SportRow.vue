@@ -16,12 +16,12 @@ const totalMedals = computed(() => {
   <div>
     <div class="py-2">
       <div
-      class="grid grid-cols-[minmax(0,5.5fr)_repeat(4,1.5fr)] gap-2 items-center text-center h-16 md:mx-16 border border-gray-300 rounded-md bg-[#fbfbfd]"
+      class="grid grid-cols-[minmax(0,4.5fr)_repeat(4,1.5fr)] gap-2 items-center text-center h-16 md:mx-16 border border-gray-300 rounded-md bg-[#fbfbfd]"
       >
-        <span class="flex justify-center pr-3 md:pr-20 text-base md:text-xl font-medium text-blue-900">{{ sport.sport }}</span>
-        <span class="tracking-widest text-base md:text-lg pr-2">{{ sport.medals.gold }}</span>
-        <span class="tracking-widest text-base md:text-lg pr-2">{{ sport.medals.silver }}</span>
-        <span class="tracking-widest text-base md:text-lg pr-2">{{ sport.medals.bronze }}</span>
+        <span class="md:pr-20 text-base md:text-xl font-medium text-blue-900">{{ sport.sport }}</span>
+        <span class="tracking-widest text-base md:text-lg">{{ sport.medals.gold }}</span>
+        <span class="tracking-widest text-base md:text-lg">{{ sport.medals.silver }}</span>
+        <span class="tracking-widest text-base md:text-lg">{{ sport.medals.bronze }}</span>
         <span class="font-bold tracking-widest text-base md:text-lg pr-4">{{ totalMedals }}</span>
       </div>
     </div>

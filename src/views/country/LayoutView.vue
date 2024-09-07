@@ -50,40 +50,47 @@ onMounted(() => {
 </script>
 
 <template>
-  <div v-if="country" class="bg-[#f2efef] min-h-screen ">
+  <div v-if="country" class="bg-[#f2efef] min-h-screen">
     <div>
-      <nav class="flex items-center justify-between relative  bg-[#141d64] shadow-md p-5 pb-1 md:p-10 ">
+      <nav
+        class="flex items-center justify-between relative bg-[#141d64] shadow-md p-5 pb-3 md:p-10"
+      >
         <!-- Left Section: Button -->
         <div>
           <router-link
             :to="{ name: 'country' }"
-            class="text-[#dbc26c] text-4xl px-4 sm:px-12 rounded font-black tracking-wider transition duration-150 ease-in-out hover:text-[#41bde0d6] flex items-center"
+            class="text-[#ecc957] text-4xl rounded font-black tracking-wider transition duration-150 ease-in-out hover:text-[#ecc957d0] flex items-center space-x-5"
           >
             <!-- Olympic icon for mobile view -->
-            <img src="/olympic-icon.png" alt="Olympic Icon" class="w-24 h-auto block sm:hidden" />
+            <img src="/olympic-icon.png" alt="Olympic Icon" class="w-24 h-auto" />
             <!-- Olympic Medal Table text for desktop view -->
-            <span class="hidden sm:block">Olympic Medal Table</span>
+            <h1 class="hidden md:block">Olympic Medal Table</h1>
           </router-link>
         </div>
 
         <!-- Right Section: Links (aligned to the right) -->
-        <div class=" flex space-x-4 ">
+        <div class="flex space-x-2 md:space-x-5">
+          <!-- Details Button -->
           <router-link
             :to="{ name: 'detail-view', params: { id: props.id } }"
             :class="[
-              'text-xl font-semibold transition duration-150 ease-in-out focus:outline-none hover:text-[#afb7c2]',
-              route.name === 'detail-view' ? 'text-[#afb7c2]' : 'text-[#FEFCFB]'
+              'px-3 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none hover:bg-[#afb7c2] hover:text-white',
+              route.name === 'detail-view'
+                ? 'bg-[#afb7c2] text-white'
+                : 'bg-[#FEFCFB] text-[#034078]'
             ]"
           >
             Details
           </router-link>
-          <!-- Divider -->
-          <div class="h-8 border-l-2 border-gray-400"></div>
+
+          <!-- Table Button -->
           <router-link
             :to="{ name: 'sport-list-view', params: { id: props.id } }"
             :class="[
-              'text-xl font-semibold transition duration-150 ease-in-out focus:outline-none hover:text-[#afb7c2]',
-              route.name === 'sport-list-view' ? 'text-[#afb7c2]' : 'text-[#FEFCFB]'
+              'px-2 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none hover:bg-[#afb7c2] hover:text-white',
+              route.name === 'sport-list-view'
+                ? 'bg-[#afb7c2] text-white'
+                : 'bg-[#FEFCFB] text-[#034078]'
             ]"
           >
             Table
@@ -163,6 +170,4 @@ onMounted(() => {
       </div>
     </div>
   </div>
-
-  
 </template>

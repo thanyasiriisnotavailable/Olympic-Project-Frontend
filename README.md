@@ -3,7 +3,7 @@
 https://project-1-tiramisu-cake.vercel.app/
 
 ### Member
-- **652115021** Thanyasiri Chainoi
-- **652115045** Wanwisa Jankan
-- **652115052** Sorod Yawa
+- **652115021** Thanyasiri Chainoi [thanyasiriisnotavailable]
+- **652115045** Wanwisa Jankan [wanwisasin]
+- **652115052** Sorod Yawa [Sorod Yawa, KiehlZz]
 

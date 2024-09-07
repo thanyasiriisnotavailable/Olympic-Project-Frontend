@@ -29,6 +29,8 @@ onMounted(() => {
     <div v-if="isLoading" class="">
       <LoadingSpinner />
     </div>
-    <RouterView />
+    <div v-else>
+      <RouterView />
+    </div>
   </div>
 </template>

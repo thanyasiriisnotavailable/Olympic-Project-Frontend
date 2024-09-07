@@ -15,23 +15,23 @@ const sports = country.value.sports
 
 <template>
   <div
-    class=" m-6 md:m-12 md:mt-8 md:mx-48 p-5 border border-gray-300 rounded-lg shadow-lg bg-yellow-100 "
+    class=" m-6 md:m-12 md:mt-8 md:mx-48 p-5 border border-gray-300 rounded-lg shadow-lg bg-[#2bb0b033] "
   >
     <div class="box-border py-2">
       <div
-      class="grid items-center justify-items-center h-auto text-xl pb-4 gap-x-2.5 border-b-2 border-gray-300 md:mx-16 grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)]"
+      class="grid items-center justify-items-center h-auto text-xl pb-4 gap-x-2.5 border-b-2 border-[#afb2b8] md:mx-16 grid-cols-[minmax(0,4.5fr)_repeat(4,_1.5fr)]"
       >
-        <span class="md:text-2xl font-bold md:font-extrabold md:pr-20">Sport</span>
+        <span class="text-lg md:text-2xl font-bold md:font-extrabold md:pr-20">Sport</span>
         <div class="flex justify-center items-center">
-          <img src="/src/assets/gold-medal.svg" alt="gold medal" class="w-8 md:w-10" />
+          <img src="/src/assets/gold-medal.svg" alt="gold medal" class="w-6 md:w-10" />
         </div>
         <div class="flex justify-center items-center">
-          <img src="/src/assets/silver-medal.svg" alt="silver medal" class="w-8 md:w-10" />
+          <img src="/src/assets/silver-medal.svg" alt="silver medal" class="w-6 md:w-10" />
         </div>
         <div class="flex justify-center items-center">
-          <img src="/src/assets/bronze-medal.svg" alt="bronze medal" class="w-8 md:w-10" />
+          <img src="/src/assets/bronze-medal.svg" alt="bronze medal" class="w-6 md:w-10" />
         </div>
-        <span class="md:text-2xl font-bold md:font-extrabold pr-2">Total</span>
+        <span class="text-lg md:text-2xl font-bold md:font-extrabold pr-2">Total</span>
       </div>
     </div>
 
