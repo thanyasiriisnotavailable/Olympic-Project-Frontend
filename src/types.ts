@@ -3,6 +3,7 @@ export interface Country {
   id: string
   name: string
   flag: string
+  image:string
   capital: string
   language: string
   continent: string

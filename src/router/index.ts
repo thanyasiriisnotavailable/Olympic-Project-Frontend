@@ -6,6 +6,7 @@ import SportListView from '@/views/country/SportListView.vue';
 import nProgress from 'nprogress';
 import NotFoundView from '@/views/NotFoundView.vue';
 import NetworkErrorView from '@/views/NetworkErrorView.vue';
+import AddCountryView from '@/views/country/AddCountryView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -51,6 +52,13 @@ const router = createRouter({
       name: 'network-error-view',
       component: NetworkErrorView,
     },
+    {
+      path: '/add-country',
+      name: 'add-country-view',
+      component: AddCountryView,
+      props: true,
+    }
+    
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
