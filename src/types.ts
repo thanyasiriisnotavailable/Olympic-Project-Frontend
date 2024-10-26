@@ -1,5 +1,5 @@
 export interface Country {
-  order: number
+  orderNo: number
   id: string
   name: string
   flag: string

@@ -40,7 +40,7 @@ const total = computed(() => {
           <span
             class="font-bold text-blue-900 mr-3 md:mr-12 ml-2 md:ml-4 flex justify-center text-lg md:text-xl"
           >
-            {{ country.order }}
+            {{ country.orderNo }}
           </span>
           <img
             :src="country.flag"
