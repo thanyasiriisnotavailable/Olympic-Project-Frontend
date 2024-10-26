@@ -53,7 +53,7 @@ onMounted(() => {
   <div v-if="country" class="bg-[#f2efef] min-h-screen">
     <div>
       <nav
-        class="flex items-center justify-between relative bg-[#141d64] shadow-md p-5 pb-3 md:p-10"
+        class="flex items-center justify-between relative bg-[#141d64] shadow-md p-5 pb-3 md:px-5 md:py-2"
       >
         <!-- Left Section: Button -->
         <div>
@@ -93,27 +93,27 @@ onMounted(() => {
                 : 'bg-[#FEFCFB] text-[#034078]'
             ]"
           >
-            Table
+            Sport
           </router-link>
         </div>
       </nav>
     </div>
 
+    <h1 class="text-center text-3xl font-bold my-6">{{ country.name }}</h1>
+
     <div>
       <RouterView :country="country" />
     </div>
 
-    <!-- Comment cheer -->
-    <div class="comment flex justify-center items-center mx-auto my-10 max-w-screen-lg">
-      <div
-        class="comment-section px-6 mb-6 flex flex-col space-y-6 lg:flex-row lg:space-y-0 lg:space-x-6 lg:w-full"
-      >
-        <!-- Comment Form -->
+    <!-- Full Width Comment Section -->
+    <div class="comment flex justify-center items-center mx-auto my-10 bg-[#4274a3]">
+      <div class="comment-section flex w-full px-6 space-x-6">
+        <!-- Comment Form (2/5) -->
         <form
-          class="comment-form w-full space-y-4 px-6 py-5 bg-[#95bbde] rounded-lg shadow-lg"
+          class="comment-form flex-shrink-0 w-2/5 space-y-4 px-6 py-5 bg-[#4274a3]"
           @submit="submitComment"
         >
-          <h4 class="text-2xl font-bold mb-2 text-gray-800">Cheer on your favorite athlete!</h4>
+          <h4 class="text-2xl font-bold mb-2 text-[#0e1736]">Cheer on your favorite athlete!</h4>
           <textarea
             name="comment"
             placeholder="Leave a message of support..."
@@ -122,27 +122,18 @@ onMounted(() => {
           ></textarea>
           <button
             type="submit"
-            class="w-full py-2 bg-[#404449] text-white rounded-lg hover:bg-[#0A1128] transition duration-200"
+            class="w-full py-2 bg-[#0e1736] text-white rounded-lg hover:bg-[#0A1128] transition duration-200"
           >
             Comment
           </button>
         </form>
 
-        <!-- Displaying Comments for the Current Country -->
-        <div class="comment-list w-full space-y-4 px-6 py-6 bg-[#95bbde] rounded-lg shadow-lg">
+        <!-- Displaying Comments (3/5) -->
+        <div class="comment-list flex-grow w-3/5 space-y-4 px-6 py-6 bg-[#4274a3]">
           <div class="w-full h-full bg-white p-4 rounded-lg shadow-md">
             <h4 class="text-xl font-semibold text-gray-700">Messages of Support:</h4>
-
-            <!-- Scrollable comment items -->
-            <div
-              v-if="comments[country.id]?.length > 0"
-              :class="[
-                'comment-items mt-4',
-                comments[country.id].length > 2 ? 'overflow-y-auto max-h-48' : ''
-              ]"
-            >
+            <div v-if="comments[country.id]?.length > 0" class="mt-4">
               <ul class="space-y-3">
-                <!-- Display all comments, but limit the visible height -->
                 <li
                   v-for="(comment, index) in comments[country.id]?.slice().reverse()"
                   :key="index"
@@ -152,13 +143,9 @@ onMounted(() => {
                 </li>
               </ul>
             </div>
-
-            <!-- Message when no comments are available -->
             <div v-else class="text-gray-400 text-sm mt-4">
               <p class="text-base">Be the first to leave a comment!</p>
             </div>
-
-            <!-- Scroll indicator for more comments -->
             <div
               v-if="comments[country.id]?.length > 2"
               class="text-right text-gray-400 text-sm mt-2"
