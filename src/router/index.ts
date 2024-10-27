@@ -7,6 +7,7 @@ import nProgress from 'nprogress';
 import NotFoundView from '@/views/NotFoundView.vue';
 import NetworkErrorView from '@/views/NetworkErrorView.vue';
 import AddCountryView from '@/views/country/AddCountryView.vue';
+import UserListView from '@/views/UserListView.vue';
 import LoginView from '@/views/authentication/LoginView.vue';
 
 const router = createRouter({
@@ -62,6 +63,13 @@ const router = createRouter({
       path: '/add-country',
       name: 'add-country-view',
       component: AddCountryView,
+      props: true,
+    }
+    ,
+    {
+      path: '/user',
+      name: 'all-user-view',
+      component: UserListView,
       props: true,
     }
     
