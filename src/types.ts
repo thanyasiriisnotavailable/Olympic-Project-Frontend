@@ -20,3 +20,12 @@ export interface Sport {
 export interface MessageState {
   message: string
 }
+
+// Define the User type to use for user data in the auth store
+export interface User {
+  id: number;
+  name: string;
+  lastname: string;
+  email: string;
+  roles: string[]; // assuming roles is an array of strings
+}
