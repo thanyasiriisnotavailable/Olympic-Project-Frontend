@@ -12,10 +12,6 @@ export interface Country {
 
 export interface Sport {
   sport: string
-  medals: Medals
-}
-
-export interface Medals {
   gold: number
   silver: number
   bronze: number

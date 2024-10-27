@@ -1,4 +1,5 @@
 import apiClient from "./AxiosClient"
+import type { Country } from '@/types'
 
 export default {
   getCountries(perPage: number, page: number) {
@@ -6,5 +7,8 @@ export default {
   },
   getCountry(id: string) {
     return apiClient.get('/countries/' + id)
+  },
+  saveCountry(country : Country){
+    return apiClient.post('/countries',country)
   }
 }
