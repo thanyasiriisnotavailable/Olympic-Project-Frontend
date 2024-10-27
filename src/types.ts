@@ -16,3 +16,7 @@ export interface Sport {
   silver: number
   bronze: number
 }
+
+export interface MessageState {
+  message: string
+}
