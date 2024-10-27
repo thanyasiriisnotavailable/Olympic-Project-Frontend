@@ -65,6 +65,7 @@ const removeSport = (index: number) => {
     <h2 class="text-2xl font-bold text-blue-700 mb-6">Add New Country</h2>
     <form @submit.prevent="saveCountry">
       <!-- Country Fields -->
+       
       <BaseInput v-model="country.id" label="ISO Country Code" />
       <BaseInput v-model="country.name" label="Country Name" />
       <ImageUpload v-model="country.flag" label="Country Flag" />

@@ -7,7 +7,6 @@ import type { Country } from '@/types'
 import CountryService from '@/services/CountryService'
 import { useCommentStore } from '@/stores/comment'
 import { storeToRefs } from 'pinia'
-
 const store = useCommentStore()
 const { comments } = storeToRefs(store)
 const country = ref<Country | null>(null)
@@ -51,54 +50,36 @@ onMounted(() => {
 
 <template>
   <div v-if="country" class="bg-[#f2efef] min-h-screen">
-    <div>
-      <nav
-        class="flex items-center justify-between relative bg-[#141d64] shadow-md p-5 pb-3 md:px-5 md:py-2"
+  
+    <!-- Details and Sport Buttons aligned to the right -->
+    <div class="flex justify-end space-x-2 md:space-x-5 mt-4 mr-5">
+      <!-- Details Button -->
+      <router-link
+        :to="{ name: 'detail-view', params: { id: props.id } }"
+        :class="[ 
+          'px-3 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none', 
+          route.name === 'detail-view' 
+            ? 'bg-[#afb7c2] text-white cursor-default' 
+            : 'bg-[#FEFCFB] text-[#034078] hover:bg-[#858990] hover:text-white' 
+        ]"
+        :disabled="route.name === 'detail-view'"
       >
-        <!-- Left Section: Button -->
-        <div>
-          <router-link
-            :to="{ name: 'country' }"
-            class="text-[#ecc957] text-4xl rounded font-black tracking-wider transition duration-150 ease-in-out hover:text-[#ecc957d0] flex items-center space-x-5"
-          >
-            <!-- Olympic icon for mobile view -->
-            <img src="/olympic-icon.png" alt="Olympic Icon" class="w-24 h-auto" />
-            <!-- Olympic Medal Table text for desktop view -->
-            <h1 class="hidden md:block">Olympic Medal Table</h1>
-          </router-link>
-        </div>
+        Details
+      </router-link>
 
-        <!-- Right Section: Links (aligned to the right) -->
-        <div class="flex space-x-2 md:space-x-5">
-          <!-- Details Button -->
-          <router-link
-            :to="{ name: 'detail-view', params: { id: props.id } }"
-            :class="[
-              'px-3 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none',
-              route.name === 'detail-view'
-                ? 'bg-[#afb7c2] text-white text-sm cursor-default'
-                : 'bg-[#FEFCFB] text-[#034078] text-lg hover:bg-[#858990] hover:text-white'
-            ]"
-            :disabled="route.name === 'detail-view'"
-          >
-            Details
-          </router-link>
-
-          <!-- Table Button -->
-          <router-link
-            :to="{ name: 'sport-list-view', params: { id: props.id } }"
-            :class="[
-              'px-2 py-2 md:px-4 md:py-2 md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none',
-              route.name === 'sport-list-view'
-                ? 'bg-[#afb7c2] text-white text-sm cursor-default'
-                : 'bg-[#FEFCFB] text-[#034078] text-lg hover:bg-[#858990] hover:text-white'
-            ]"
-            :disabled="route.name === 'sport-list-view'"
-          >
-            Sport
-          </router-link>
-        </div>
-      </nav>
+      <!-- Sport Button -->
+      <router-link
+        :to="{ name: 'sport-list-view', params: { id: props.id } }"
+        :class="[ 
+          'px-2 py-2 md:px-4 md:py-2 md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none', 
+          route.name === 'sport-list-view' 
+            ? 'bg-[#afb7c2] text-white cursor-default' 
+            : 'bg-[#FEFCFB] text-[#034078] hover:bg-[#858990] hover:text-white' 
+        ]"
+        :disabled="route.name === 'sport-list-view'"
+      >
+        Sport
+      </router-link>
     </div>
 
     <h1 class="text-center text-3xl font-bold my-6">{{ country.name }}</h1>

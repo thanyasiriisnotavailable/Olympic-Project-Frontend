@@ -5,6 +5,7 @@ import { ref, onMounted, computed, watchEffect, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import CountryService from '@/services/CountryService';
+
 const route = useRoute();
 const router = useRouter();
 
@@ -52,46 +53,46 @@ const toggleDropdown = () => {
 </script>
 
 <template>
-  <div class="bg-[#141d64] text-[#ecc957] py-15 px-5 w-full text-center mb-7 shadow-md h-auto flex flex-col items-center justify-center">
-    <h1 class="text-3xl md:text-5xl font-bold m-0 pt-5">Olympic Medal Table</h1>
-    <div class="perpage-box mt-4 mx-5 w-full md:w-1/2 justify-items-center relative left-[24%] translate-x-[-24%]">
-      <div class="w-full px-4 mb-3">
-        <div class="flex flex-col items-center relative">
-          <div class="w-full">
-            <div class="my-2 p-1 bg-white flex border border-gray-200 rounded w-full md:w-1/2">
-              <!-- Make input read-only and trigger dropdown on click -->
-              <div
-                id="perPageInput"
-                class="p-1 px-2 appearance-none outline-none w-full text-gray-800 cursor-pointer"
-                @click="toggleDropdown"
-              >
-                {{ perPageInput }} countries per page
-              </div>
-              <div class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200">
-                <button @click="toggleDropdown" class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up w-4 h-4" :class="{'rotate-180 transition-transform duration-300 ease-in-out': isDropdownVisible}">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- Dropdown with selection options -->
-          <div v-if="isDropdownVisible" class="absolute shadow bg-white top-full z-40 left-0 rounded max-h-60 overflow-y-auto w-full md:w-6/12">
-            <div class="flex flex-col w-full">
-              <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-[#468bd9]" v-for="n in 20" :key="n" @click="perPageInput = n; isDropdownVisible = false">
-                <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100 text-[#001f54] hover:text-[#FEFCFB] hover:font-bolder">
-                  <div class="w-full items-center flex">
-                    <div class="mx-2 -mt-1">{{ n }}</div>
-                  </div>
+ <div class="flex justify-center mt-4" @click.self="isDropdownVisible = false">
+    <div class="perpage-box w-full md:w-1/2">
+        <div class="w-full px-4 mb-3">
+            <div class="flex flex-col relative items-center">
+
+                <!-- Input Box -->
+                    <div class="my-2 p-1 bg-white flex items-center border-gray-200 rounded w-full md:w-1/2">
+                        <div
+                            id="perPageInput"
+                            class="p-1 px-2 appearance-none outline-none w-full text-gray-800 cursor-pointer"
+                            @click="toggleDropdown"
+                        >
+                            {{ perPageInput }} countries per page
+                        </div>
+                        <div class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200">
+                            <button @click="toggleDropdown" class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up w-4 h-4" :class="{'rotate-180 transition-transform duration-300 ease-in-out': isDropdownVisible}">
+                                    <polyline points="18 15 12 9 6 15"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                
+                <!-- Dropdown with selection options -->
+                <div v-if="isDropdownVisible" class="absolute shadow bg-white top-full z-40  rounded max-h-60 overflow-y-auto w-full md:w-6/12">
+                    <div class="flex flex-col w-full">
+                        <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-[#468bd9]" v-for="n in 20" :key="n" @click="perPageInput = n; isDropdownVisible = false">
+                            <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100 text-[#001f54] hover:text-[#FEFCFB] hover:font-bolder">
+                                <div class="w-full items-center flex">
+                                    <div class="mx-2 -mt-1">{{ n }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
 
   <div class="box-border mb-11">
     <div class="grid items-center justify-items-center gap-x-2.5 h-14 text-lg md:text-xl px-6 md:px-4 md:mx-16 grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)] font-medium">

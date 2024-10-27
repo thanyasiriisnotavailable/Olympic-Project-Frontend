@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router';
 import LoadingSpinner from '@/components/Loading.vue';
 import { ref, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
+import MyNavBar from '@/components/MyNavBar.vue'
 
 const isLoading = ref(false);
 const router = useRouter();
@@ -38,6 +39,7 @@ onMounted(() => {
       <LoadingSpinner />
     </div>
     <div v-else>
+      <MyNavBar />
       <RouterView />
     </div>
   </div>

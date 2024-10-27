@@ -7,6 +7,7 @@ import { useRouter } from 'vue-router';
 import { useMessageStore } from '@/stores/message';
 const router = useRouter()
 
+import MyNavBar from '@/components/MyNavBar.vue'
 
 const validationSchema = yup.object({
   email: yup.string().required('The email is required'),
@@ -41,8 +42,9 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
+  
   <div class="flex min-h-full flex-1 flex-col justify-center items-center px-6 py-16 lg:px-8">
-    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">  
       <img
         class="mx-auto h-20 w-auto"
         src="/src/assets/Login user.png"
