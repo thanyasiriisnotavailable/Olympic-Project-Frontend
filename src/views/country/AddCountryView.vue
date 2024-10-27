@@ -13,7 +13,6 @@ const country = ref<Country>({
   id: '',
   name: '',
   flag: '',
-  images: [],
   capital: '',
   language: '',
   continent: '',
@@ -68,8 +67,7 @@ const removeSport = (index: number) => {
     <form @submit.prevent="saveCountry">
       <!-- Country Fields -->
       <BaseInput v-model="country.name" label="Country Name" />
-      <BaseInput v-model="country.flag" label="Country Flag (URL)" />
-      <ImageUpload v-model="country.images"></ImageUpload>
+      <ImageUpload v-model="country.flag" label="Country Flag"></ImageUpload>
       <BaseInput v-model="country.capital" label="Capital City" />
       <BaseInput v-model="country.language" label="Official Language" />
       <BaseSelection 
@@ -79,7 +77,6 @@ const removeSport = (index: number) => {
       <!-- Sports Section -->
       <div v-for="(sport, index) in country.sports" :key="index" class="mb-4">
         <div class="flex items-center justify-between mb-2">
-          <label class="block text-gray-700 text-sm font-bold mb-2">Sport Name</label>
           <button
             @click.prevent="removeSport(index)"
             class="text-red-500 hover:text-red-700 font-bold"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { defineProps, withDefaults,  } from 'vue';
+  import { defineProps, withDefaults  } from 'vue';
   
   interface BaseInputProps {
     label: string;

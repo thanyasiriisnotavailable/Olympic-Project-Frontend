@@ -1,42 +1,53 @@
 <script setup lang="ts">
-import Uploader from 'vue-media-upload'
-import { ref } from 'vue'
+import Uploader from 'vue-media-upload';
+import { ref, defineProps, withDefaults, defineEmits } from 'vue';
 
-interface Props {
-  modelValue?: string[]
+interface CombinedProps {
+  modelValue?: string;
+  label?: string;
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: () => []
+const props = withDefaults(defineProps<CombinedProps>(), {
+  modelValue: '',
+  label: '',
 });
 
+const emit = defineEmits(['update:modelValue']);
 
-const convertStringToMedia = (str: string[]): any => {
-  return str.map((element: string) => {
-    return {
-      name: element
-    }
-  })
-}
-
-const emit = defineEmits(['update:modelValue'])
-
-const convertMediaToString = (media: any): string[] => {
-  const output: string[] = []
-  media.forEach((element: any) => {
-    output.push(element.name)
-  })
-  return output
-}
-
-const media = ref(convertStringToMedia(props.modelValue))
-const uploadUrl = ref(import.meta.env.VITE_UPLOAD_URL)
+const media = ref(props.modelValue ? [{ name: props.modelValue }] : []);
+const uploadUrl = ref(import.meta.env.VITE_UPLOAD_URL);
 
 const onChanged = (files: any) => {
-  emit('update:modelValue', convertMediaToString(files))
-}
+  const singleFile = files[0];
+  if (singleFile) {
+    media.value = [singleFile];
+    emit('update:modelValue', singleFile.name);
+  }
+};
+
+const removeMedia = () => {
+  media.value = [];
+  emit('update:modelValue', '');
+};
 </script>
 
 <template>
-  <Uploader :server="uploadUrl" @change="onChanged" :media="media"></Uploader>
+  <label v-if="props.label" class="block text-gray-700 text-sm font-semibold mb-2">
+    {{ props.label }}
+  </label>
+  
+  <Uploader
+    v-if="media.length === 0"
+    :server="uploadUrl"
+    @change="onChanged"
+    :multiple="false"
+    :maxFiles="1"
+  ></Uploader>
+  
+  <div v-else class="flex items-center space-x-3 mt-2">
+    <img :src="media[0].name" alt="Uploaded" class="w-24 h-auto rounded-lg shadow-md"/>
+    <button @click="removeMedia" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+      Remove
+    </button>
+  </div>
 </template>
