@@ -2,31 +2,31 @@
 import InputText from '@/components/InputText.vue'
 import * as yup from 'yup'
 import { useField, useForm } from 'vee-validate'
+import { useAuthStore } from '@/stores/auth';
 
 const validationSchema = yup.object({
-  username: yup
-    .string()
-    .required('The username is not required')
-    .min(6, 'The username must be at least 6 characters.'),
-  password: yup
-    .string()
-    .required('The password is not required')
-    .min(6, 'The password must be at least 6 characters.')
+  email: yup.string().required('The email is required'),
+  password: yup.string().required('The password is required')
 })
 
-const { handleSubmit } = useForm({
+const { errors, handleSubmit } = useForm({
   validationSchema,
   initialValues: {
-    username: '',
+    email: '',
     password: ''
   }
 })
+const authStore = useAuthStore()
 
-const { value: username, errorMessage: usernameError } = useField<string>('username')
-const { value: password, errorMessage: passwordError } = useField<string>('password')
-
+const { value: email} = useField<string>('email')
+const { value: password} = useField<string>('password')
 const onSubmit = handleSubmit((values) => {
-  console.log(values)
+  authStore.login(values.email, values.password)
+  .then(() => {
+      console.log('login success')
+    }).catch((err) => {
+      console.log('error',err)
+    })
 })
 </script>
 
@@ -45,10 +45,10 @@ const onSubmit = handleSubmit((values) => {
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <form class="space-y-6" @submit.prevent="onSubmit">
         <div>
-          <label for="username" class="block text-sm font-medium leading-6 text-gray-900">
-            Username
+          <label for="email" class="block text-sm font-medium leading-6 text-gray-900">
+            Email address
           </label>
-          <InputText type="text" v-model="username" placeholder="Email address" :error="usernameError" />
+          <InputText type="text" v-model="email" placeholder="Email address" :error="errors['email']" />
         </div>
         <div>
           <div class="flex items-center justify-between">
@@ -61,7 +61,7 @@ const onSubmit = handleSubmit((values) => {
               </a>
             </div>
           </div>
-          <InputText type="password" v-model="password" placeholder="Password" :error="passwordError" />
+          <InputText type="password" v-model="password" placeholder="Password" :error="errors['password']" />
         </div>
         <div>
           <button
