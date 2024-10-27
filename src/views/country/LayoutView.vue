@@ -51,37 +51,35 @@ onMounted(() => {
 <template>
   <div v-if="country" class="bg-[#f2efef] min-h-screen">
   
-    <!-- Details and Sport Buttons aligned to the right -->
     <div class="flex justify-end space-x-2 md:space-x-5 mt-4 mr-5">
-      <!-- Details Button -->
-      <router-link
-        :to="{ name: 'detail-view', params: { id: props.id } }"
-        :class="[ 
-          'px-3 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none', 
-          route.name === 'detail-view' 
-            ? 'bg-[#afb7c2] text-white cursor-default' 
-            : 'bg-[#FEFCFB] text-[#034078] hover:bg-[#858990] hover:text-white' 
-        ]"
-        :disabled="route.name === 'detail-view'"
-      >
-        Details
-      </router-link>
-
-      <!-- Sport Button -->
-      <router-link
-        :to="{ name: 'sport-list-view', params: { id: props.id } }"
-        :class="[ 
-          'px-2 py-2 md:px-4 md:py-2 md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none', 
-          route.name === 'sport-list-view' 
-            ? 'bg-[#afb7c2] text-white cursor-default' 
-            : 'bg-[#FEFCFB] text-[#034078] hover:bg-[#858990] hover:text-white' 
-        ]"
-        :disabled="route.name === 'sport-list-view'"
-      >
-        Sport
-      </router-link>
-    </div>
-
+  <!-- Details Button -->
+  <router-link
+    :to="{ name: 'detail-view', params: { id: props.id } }"
+    :class="[ 
+      'text-lg md:text-xl font-semibold transition duration-150 ease-in-out focus:outline-none', 
+      route.name === 'detail-view' 
+        ? 'text-gray-500 cursor-default' 
+        : 'text-[#034078] hover:underline hover:text-[#034078] font-bold' 
+    ]"
+    :disabled="route.name === 'detail-view'"
+  >
+    Details          
+  </router-link>
+<h1>|</h1>          
+  <!-- Sport Button -->
+  <router-link
+    :to="{ name: 'sport-list-view', params: { id: props.id } }"
+    :class="[ 
+      'text-lg md:text-xl font-semibold transition duration-150 ease-in-out focus:outline-none', 
+      route.name === 'sport-list-view' 
+        ? 'text-gray-500 cursor-default' 
+        : 'text-[#034078] hover:underline hover:text-[#034078] font-bold' 
+    ]"
+    :disabled="route.name === 'sport-list-view'"
+  >
+    Sport
+  </router-link>
+</div>
     <h1 class="text-center text-3xl font-bold my-6">{{ country.name }}</h1>
 
     <div>
@@ -89,7 +87,7 @@ onMounted(() => {
     </div>
 
     <!-- Full Width Comment Section -->
-    <div class="comment flex justify-center items-center mx-auto my-10 bg-[#4274a3]">
+    <div class="comment flex justify-center items-center mx-auto  bg-[#4274a3]">
       <div class="comment-section flex w-full px-6 space-x-6">
         <!-- Comment Form (2/5) -->
         <form
