@@ -16,9 +16,8 @@ const country = ref<Country>({
   capital: '',
   language: '',
   continent: '',
-  sports: [{ sport: '', medals: { gold: 0, silver: 0, bronze: 0 } }],
+  sports: [{ sport: '', gold: 0, silver: 0, bronze: 0 } ],
   comments: [],
-
 });
 
 // Router for navigation
@@ -45,14 +44,14 @@ const cancel = () => {
     capital: '',
     language: '',
     continent: '',
-    sports: [{ sport: '', medals: { gold: 0, silver: 0, bronze: 0 } }],
+    sports: [{ sport: '', gold: 0, silver: 0, bronze: 0 }],
     comments: [],
   });
 };
 
 // Add a new sport entry
 const addSport = () => {
-  country.value.sports.push({ sport: '', medals: { gold: 0, silver: 0, bronze: 0 } });
+  country.value.sports.push({ sport: '', gold: 0, silver: 0, bronze: 0 });
 };
 
 // Remove a sport entry by index
@@ -66,13 +65,14 @@ const removeSport = (index: number) => {
     <h2 class="text-2xl font-bold text-blue-700 mb-6">Add New Country</h2>
     <form @submit.prevent="saveCountry">
       <!-- Country Fields -->
+      <BaseInput v-model="country.id" label="ISO Country Code" />
       <BaseInput v-model="country.name" label="Country Name" />
-      <ImageUpload v-model="country.flag" label="Country Flag"></ImageUpload>
+      <ImageUpload v-model="country.flag" label="Country Flag" />
       <BaseInput v-model="country.capital" label="Capital City" />
       <BaseInput v-model="country.language" label="Official Language" />
       <BaseSelection 
         v-model="country.continent" 
-        label="Select Continent"    />
+        label="Select Continent" />
 
       <!-- Sports Section -->
       <div v-for="(sport, index) in country.sports" :key="index" class="mb-4">
@@ -85,22 +85,21 @@ const removeSport = (index: number) => {
           </button>
         </div>
         <BaseInput v-model="sport.sport" label="Sport Name" />
-
         <div class="flex space-x-4">
           <BaseInput 
-            v-model.number="sport.medals.gold" 
+            v-model="sport.gold" 
             label="Gold Medals" 
             type="number" 
             min="0" 
           />
           <BaseInput 
-            v-model.number="sport.medals.silver" 
+            v-model="sport.silver" 
             label="Silver Medals" 
             type="number" 
             min="0" 
           />
           <BaseInput 
-            v-model.number="sport.medals.bronze" 
+            v-model="sport.bronze" 
             label="Bronze Medals" 
             type="number" 
             min="0" 
@@ -133,4 +132,7 @@ const removeSport = (index: number) => {
       </div>
     </form>
   </div>
+
+  <pre>{{ country }}</pre>
 </template>
+

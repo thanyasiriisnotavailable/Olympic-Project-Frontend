@@ -13,9 +13,9 @@ const totalMedals = computed(() => {
 
   // Calculate the total medals for the country
   props.country.sports.forEach((sport) => {
-    medals.gold += sport.medals.gold
-    medals.silver += sport.medals.silver
-    medals.bronze += sport.medals.bronze
+    medals.gold += sport.gold
+    medals.silver += sport.silver
+    medals.bronze += sport.bronze
   })
 
   return medals
