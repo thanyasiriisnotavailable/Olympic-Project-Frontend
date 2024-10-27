@@ -15,7 +15,7 @@ const sports = country.value.sports
 
 <template>
   <div
-    class=" m-6 md:m-12 md:mt-8 md:mx-48 p-5 border border-gray-300 rounded-lg shadow-lg bg-[#2bb0b033] "
+    class="m-6 md:m-12 md:mt-8 md:mx-48 p-5 border border-gray-300 rounded-lg shadow-lg bg-[#2bb0b033] "
   >
     <div class="box-border py-2">
       <div
