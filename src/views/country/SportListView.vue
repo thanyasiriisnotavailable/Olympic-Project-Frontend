@@ -2,6 +2,7 @@
 import { toRefs, defineProps } from 'vue'
 import type { Country } from '@/types'
 import SportRow from '@/components/SportRow.vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   country: Country
@@ -11,15 +12,33 @@ const { country } = toRefs(props)
 
 // Extracting sports from the country object
 const sports = country.value.sports
+
+// Router instance to navigate
+const router = useRouter()
+
+// Function to navigate to the Edit page
+const editSports = () => {
+  router.push({ name: 'edit-sport-view', params: { id: country.value.id } })
+}
 </script>
 
 <template>
   <div
-    class="m-6 md:m-12 md:mt-8 md:mx-48 p-5 border border-gray-300 rounded-lg shadow-lg bg-[#2bb0b033] "
+    class="m-6 md:m-12 md:mt-8 md:mx-48 p-5 border border-gray-300 rounded-lg shadow-lg bg-[#2bb0b033]"
   >
+    <!-- Edit Button -->
+    <div class="flex justify-end mb-4">
+      <button
+        @click="editSports"
+        class="px-4 py-2 bg-[#0e1736] text-white rounded hover:bg-[#0A1128] transition duration-200"
+      >
+        Edit
+      </button>
+    </div>
+
     <div class="box-border py-2">
       <div
-      class="grid items-center justify-items-center h-auto text-xl pb-4 gap-x-2.5 border-b-2 border-[#afb2b8] md:mx-16 grid-cols-[minmax(0,4.5fr)_repeat(4,_1.5fr)]"
+        class="grid items-center justify-items-center h-auto text-xl pb-4 gap-x-2.5 border-b-2 border-[#afb2b8] md:mx-16 grid-cols-[minmax(0,4.5fr)_repeat(4,_1.5fr)]"
       >
         <span class="text-lg md:text-2xl font-bold md:font-extrabold md:pr-20">Sport</span>
         <div class="flex justify-center items-center">

@@ -102,7 +102,9 @@ onMounted(() => {
     </div>
 
     <h1 class="text-center text-3xl font-bold my-6">{{ country.name }}</h1>
-
+    <div class="flex space-x-2 md:space-x-5">
+         
+    </div>
     <div>
       <RouterView :country="country" />
     </div>
