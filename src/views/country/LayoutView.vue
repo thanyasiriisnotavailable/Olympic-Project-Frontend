@@ -74,11 +74,12 @@ onMounted(() => {
           <router-link
             :to="{ name: 'detail-view', params: { id: props.id } }"
             :class="[
-              'px-3 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none hover:bg-[#afb7c2] hover:text-white',
+              'px-3 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none',
               route.name === 'detail-view'
-                ? 'bg-[#afb7c2] text-white'
-                : 'bg-[#FEFCFB] text-[#034078]'
+                ? 'bg-[#afb7c2] text-white text-sm cursor-default'
+                : 'bg-[#FEFCFB] text-[#034078] text-lg hover:bg-[#858990] hover:text-white'
             ]"
+            :disabled="route.name === 'detail-view'"
           >
             Details
           </router-link>
@@ -87,11 +88,12 @@ onMounted(() => {
           <router-link
             :to="{ name: 'sport-list-view', params: { id: props.id } }"
             :class="[
-              'px-2 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none hover:bg-[#afb7c2] hover:text-white',
+              'px-2 py-2 md:px-4 md:py-2 md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none',
               route.name === 'sport-list-view'
-                ? 'bg-[#afb7c2] text-white'
-                : 'bg-[#FEFCFB] text-[#034078]'
+                ? 'bg-[#afb7c2] text-white text-sm cursor-default'
+                : 'bg-[#FEFCFB] text-[#034078] text-lg hover:bg-[#858990] hover:text-white'
             ]"
+            :disabled="route.name === 'sport-list-view'"
           >
             Sport
           </router-link>

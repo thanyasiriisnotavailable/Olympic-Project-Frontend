@@ -1,3 +1,4 @@
+import type { Country } from '@/types'
 import axios from 'axios'
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -13,5 +14,8 @@ export default {
   },
   getCountry(id: string) {
     return apiClient.get('/countries/' + id)
+  },
+  saveCountry(country : Country){
+    return apiClient.post('/countries',country)
   }
 }
