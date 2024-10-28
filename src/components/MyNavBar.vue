@@ -25,13 +25,13 @@
         Login
       </router-link>
 
-<!-- 
+
       <router-link
-        :to="{ name: 'signup' }"
+        :to="{ name: 'register' }"
         class="px-3 py-2 md:px-4 md:py-2 text-lg md:text-xl font-semibold rounded-md transition duration-150 ease-in-out focus:outline-none bg-[#FEFCFB] text-[#034078] hover:bg-[#858990] hover:text-white"
       >
         Signup
-      </router-link> -->
+      </router-link>
     </div>
   </nav>
 </template>

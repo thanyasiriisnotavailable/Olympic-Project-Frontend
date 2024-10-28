@@ -86,14 +86,14 @@ const onSubmit = handleSubmit(async (values) => {
                     <InputText v-model="password" type="password" placeholder="Password" :error="errors['password']" />
                 </div>
                 <div>
-                    <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500">
+                    <button type="submit" class="flex w-full justify-center rounded-md bg-[#4274a3] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#39658e]">
                         Sign up
                     </button>
                 </div>
             </form>
             <p class="mt-10 text-center text-sm text-gray-500">
                 Already a member?
-                <router-link to="/login" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Login here</router-link>
+                <router-link to="/login" class="font-semibold leading-6 text-[#4274a3] hover:text-[#39658e]"> Login here</router-link>
             </p>
         </div>
     </div>
