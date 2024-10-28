@@ -86,7 +86,7 @@ const onSubmit = handleSubmit((values) => {
       </form>
       <p class="mt-8 text-center text-sm text-gray-500">
         Not a member?
-        <a href="#" class="font-semibold text-[#4274a3] hover:text-[#39658e]">
+        <a href="/register" class="font-semibold text-[#4274a3] hover:text-[#39658e]">
           Try to register here
         </a>
       </p>

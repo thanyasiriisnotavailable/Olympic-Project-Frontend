@@ -10,6 +10,7 @@ import AddCountryView from '@/views/country/AddCountryView.vue';
 import UpdateSportView from '@/views/country/UpdateSportView.vue';
 import UserListView from '@/views/UserListView.vue';
 import LoginView from '@/views/authentication/LoginView.vue';
+import RegisterView from '@/views/authentication/RegisterView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: RegisterView
     },
     {
       path: '/404/:resource',
