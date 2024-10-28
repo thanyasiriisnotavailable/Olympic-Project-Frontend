@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import LoadingSpinner from '@/components/Loading.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import MyNavBar from '@/components/MyNavBar.vue'
+import MyNavBar from '@/components/MyNavBar.vue';
 
 const isLoading = ref(false);
 const router = useRouter();
 const route = useRoute();
 
+// Reactive property to control navbar visibility
+const showNavBar = ref(true);
+
+// Watch the route for changes to hide/show MyNavBar based on route name
+watch(
+  () => route.name,
+  (newRouteName) => {
+    showNavBar.value = !['not-found', 'network-error-view'].includes(newRouteName as string);
+  },
+  { immediate: true }
+);
+
 onMounted(() => {
   router.beforeEach((to, from, next) => {
-    // Determine if the current route or the next route is detail-view or sport-list-view
     const isFromDetailToSport = from.name === 'detail-view' && to.name === 'sport-list-view';
     const isFromSportToDetail = from.name === 'sport-list-view' && to.name === 'detail-view';
     const isFromLayoutToDetailOrSport = from.name === 'layout-view' && (to.name === 'detail-view' || to.name === 'sport-list-view');
@@ -39,7 +50,8 @@ onMounted(() => {
       <LoadingSpinner />
     </div>
     <div v-else>
-      <MyNavBar />
+      <!-- Conditionally render MyNavBar based on the showNavBar property -->
+      <MyNavBar v-if="showNavBar" />
       <RouterView />
     </div>
   </div>
