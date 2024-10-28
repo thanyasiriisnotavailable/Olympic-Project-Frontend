@@ -2,6 +2,10 @@
 import { toRefs, defineProps, reactive } from 'vue'
 import type { Country, Sport } from '@/types'
 import NumberInputWithButtons from '@/components/NumberInputWithButtons.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
 
 const props = defineProps<{
   country: Country
@@ -38,7 +42,7 @@ function removeSport(index: number) {
 }
 // Function to handle submission of all changes
 function Update() {
-  alert('All changes submitted successfully!')
+  router.push({ name: 'sport-list-view', params: { id: country.value.id } })
 }
 </script>
 
