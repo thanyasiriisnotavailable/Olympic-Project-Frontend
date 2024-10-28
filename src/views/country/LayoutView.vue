@@ -86,8 +86,8 @@ onMounted(() => {
       <RouterView :country="country" />
     </div>
 
-    <!-- Full Width Comment Section -->
-    <div class="comment flex justify-center items-center mx-auto  bg-[#4274a3]">
+    <!-- Full Width Comment Section --> 
+    <div class="comment flex justify-center items-center mx-auto my-1 bg-[#4274a3]">
       <div class="comment-section flex w-full px-6 space-x-6">
         <!-- Comment Form (2/5) -->
         <form
