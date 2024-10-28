@@ -6,8 +6,8 @@ import { useAuthStore } from '@/stores/auth';
 import { useRouter } from 'vue-router';
 import { useMessageStore } from '@/stores/message';
 const router = useRouter()
+const messageStore = useMessageStore()
 
-import MyNavBar from '@/components/MyNavBar.vue'
 
 const validationSchema = yup.object({
   email: yup.string().required('The email is required'),
@@ -25,18 +25,18 @@ const authStore = useAuthStore()
 
 const { value: email} = useField<string>('email')
 const { value: password} = useField<string>('password')
-const onSubmit = handleSubmit((values) => {
+  const onSubmit = handleSubmit((values) => {
   const messageStore = useMessageStore()
   authStore.login(values.email, values.password)
-  .then(() => {
+    .then(() => {
       router.push({ name: 'country' })
     })
     .catch((error) => {
       console.log("Login failed:", error)
-    messageStore.updateMessage('could not login')
-    setTimeout(() => {
-      messageStore.resetMessage()
-    }, 3000)
+      messageStore.updateMessage('Login failed: invalid email or password')
+      setTimeout(() => {
+        messageStore.resetMessage()
+      }, 3000) // Reset message after 3 seconds
     })
 })
 </script>
@@ -54,6 +54,17 @@ const onSubmit = handleSubmit((values) => {
         Sign in to your account
       </h2>
     </div>
+
+    <div 
+      v-if="messageStore.message" 
+      class="mt-8 mb-4 flex items-center justify-center px-4 py-3 rounded-md bg-red-100 border border-red-300 text-red-800 shadow-lg animate-fade
+             text-sm md:text-base w-full max-w-md">
+      <svg class="h-5 w-5 mr-2 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m9-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+      <span>{{ messageStore.message }}</span>
+    </div>
+
     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <form class="space-y-6" @submit.prevent="onSubmit">
         <div>
