@@ -7,6 +7,7 @@ import nProgress from 'nprogress';
 import NotFoundView from '@/views/NotFoundView.vue';
 import NetworkErrorView from '@/views/NetworkErrorView.vue';
 import AddCountryView from '@/views/country/AddCountryView.vue';
+import UpdateSportView from '@/views/country/UpdateSportView.vue';
 import UserListView from '@/views/UserListView.vue';
 import LoginView from '@/views/authentication/LoginView.vue';
 
@@ -24,7 +25,9 @@ const router = createRouter({
       component: LayoutView,
       props: true,
       children: [
+      
         {
+          
           path: '',
           name: 'detail-view',
           component: DetailView,
@@ -36,6 +39,14 @@ const router = createRouter({
           component: SportListView,
           props: true,
         },
+        {
+          path: 'sports/edit',
+          name: 'edit-sport-view',
+          component: UpdateSportView,
+          props: true,
+        },
+        
+       
       ],
     },
     {
