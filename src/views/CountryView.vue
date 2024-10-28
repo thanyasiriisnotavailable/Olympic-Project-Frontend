@@ -18,6 +18,10 @@ const perPage = computed(() => perPageInput.value ?? 5);
 
 const page = computed(() => parseInt(route.query.page as string) || 1);
 
+const props = defineProps<{
+  id: string;
+}>();
+
 const hasNextPage = computed(() => {
   const totalPages = Math.ceil(totalCountry.value / perPage.value);
   return page.value < totalPages;
@@ -53,6 +57,35 @@ const toggleDropdown = () => {
 </script>
 
 <template>
+  <div class="flex justify-end space-x-2 md:space-x-5 mt-4 mr-5">
+  
+    <router-link
+    :to="{ name: 'add-country-view', params: { id: props.id } }"
+    :class="[ 
+      'text-lg md:text-xl font-semibold transition duration-150 ease-in-out focus:outline-none', 
+      route.name === 'add-country-view' 
+        ? 'text-gray-500 cursor-default' 
+        : 'text-[#034078] hover:underline hover:text-[#034078] font-bold' 
+    ]"
+    :disabled="route.name === 'add-country-view'"
+  >
+    Add Country          
+  </router-link>
+<h1>|</h1>          
+  
+  <router-link
+    :to="{ name: 'all-user-view', params: { id: props.id } }"
+    :class="[ 
+      'text-lg md:text-xl font-semibold transition duration-150 ease-in-out focus:outline-none', 
+      route.name === 'all-user-view' 
+        ? 'text-gray-500 cursor-default' 
+        : 'text-[#034078] hover:underline hover:text-[#034078] font-bold' 
+    ]"
+    :disabled="route.name === 'all-user-view'"
+  >
+   User Management
+  </router-link>        
+  </div>
  <div class="flex justify-center mt-4" @click.self="isDropdownVisible = false">
     <div class="perpage-box w-full md:w-1/2">
         <div class="w-full px-4 mb-3">
@@ -80,7 +113,7 @@ const toggleDropdown = () => {
                 <div v-if="isDropdownVisible" class="absolute shadow bg-white top-full z-40  rounded max-h-60 overflow-y-auto w-full md:w-6/12">
                     <div class="flex flex-col w-full">
                         <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-[#468bd9]" v-for="n in 20" :key="n" @click="perPageInput = n; isDropdownVisible = false">
-                            <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100 text-[#001f54] hover:text-[#FEFCFB] hover:font-bolder">
+            <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100 text-[#001f54] hover:text-[#FEFCFB] hover:font-bolder">
                                 <div class="w-full items-center flex">
                                     <div class="mx-2 -mt-1">{{ n }}</div>
                                 </div>
@@ -89,10 +122,23 @@ const toggleDropdown = () => {
                     </div>
                 </div>
             </div>
+          </div>
+          <!-- Dropdown with selection options -->
+          <div v-if="isDropdownVisible" class="absolute shadow bg-white top-full z-40 left-0 rounded max-h-60 overflow-y-auto w-full md:w-6/12">
+            <div class="flex flex-col w-full">
+              <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-[#468bd9]" v-for="n in 20" :key="n" @click="perPageInput = n; isDropdownVisible = false">
+                <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100 text-[#001f54] hover:text-[#FEFCFB] hover:font-bolder">
+                  <div class="w-full items-center flex">
+                    <div class="mx-2 -mt-1">{{ n }}</div>
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+      </div>
+    
 
   <div class="box-border mb-11">
     <div class="grid items-center justify-items-center gap-x-2.5 h-14 text-lg md:text-xl px-6 md:px-4 md:mx-16 grid-cols-[minmax(0,_5.5fr)_repeat(4,_1.5fr)] font-medium">
